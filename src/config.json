@@ -1,0 +1,28 @@
+{
+  "name": "Python",
+  "type": "executer",
+  "exposeRoute": false,
+  "execProgram": "node",
+  "main": "app.js",
+  "version": "1.0.0",
+  "methods": [
+    {
+      "name": "RUN_SCRIPT",
+      "viewName": "Run Script",
+      "params": [
+        {
+          "name": "PATH",
+          "viewName": "Path",
+          "type": "string"
+        },
+        {
+          "name": "FLAGS",
+          "viewName": "Flags",
+          "type": "string"
+        }
+      ],
+      "actionString": "python PATH FLAGS"
+    }
+  ],
+  "imgUrl": "logo.png"
+}

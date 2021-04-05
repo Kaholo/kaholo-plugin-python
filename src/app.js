@@ -1,27 +1,24 @@
-var exec = require('child_process').exec;
-var q = require('q');
+const childProcess = require('child_process');
 
-function runScript(action){
-	var deferred = q.defer();
-	var execString = action.method.actionString;
-	for (var i =0; i< action.method.params.length;i++){
-		var param = action.method.params[i].name;
-		if (action.params.hasOwnProperty(param)) {
-			execString = execString.replace(param, action.params[param]);
-		}
-		else{
-			execString = execString.replace(param, '');
-		}
+async function runScript(action, settings){
+	const path = (action.params.PATH || "").trim();
+	if (!path){
+		throw "Script Path was not provided!";
 	}
-	exec(execString,
-		 function(error, stdout, stderr){
-			if(error){
-				return deferred.reject(stderr);
-			}
-			return deferred.resolve(stdout);
-		 }
-	);
-	return deferred.promise;
+	const flags = (action.params.FLAGS || "").trim();
+	const cmd = (settings.pythonCmd || "py").trim(); // default command is py
+	const args = [path, flags];
+	return new Promise((resolve, reject) => {
+		childProcess.execFile(cmd, args, function(error, stdout, stderr){
+		   if (error){
+			   return reject(error);
+		   }
+		   if (stderr){
+			   console.log(stderr);
+		   }
+		   return resolve(stdout);
+		});
+	});
 }
 
 module.exports = {

@@ -1,14 +1,12 @@
 {
-  "name": "kaholo-plugin-commandline",
-  "version": "1.0.0",
-  "description": "Simple command line tool",
+  "name": "kaholo-plugin-python",
+  "version": "1.2.1",
+  "description": "Run python scripts",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Kaholo team",
   "license": "ISC",
-  "dependencies": {
-    "async": "^1.5.2"
-  }
+  "dependencies": {}
 }

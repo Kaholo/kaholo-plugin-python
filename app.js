@@ -9,7 +9,7 @@ async function runScript(action, settings){
 	const cmd = (settings.pythonCmd || "python").trim(); // default command is py
 	const args = [path, flags];
 	return new Promise((resolve, reject) => {
-		childProcess.execFile(cmd, args, {cwd: process.cwd()}, function(error, stdout, stderr){
+		childProcess.execFile(cmd, args, function(error, stdout, stderr){
 		   if (error){
 			   return reject(error);
 		   }
